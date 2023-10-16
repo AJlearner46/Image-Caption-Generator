@@ -21,3 +21,6 @@ to make our image caption generator model, we will be merging these architecture
 
 CNN is used for extracting features from the image. We will use the pre-trained model VGG16.
 LSTM will use the information from CNN to help generate a description of the image.
+
+#### Model :- https://www.kaggle.com/code/ajr094/image-caption-generator/output?select=best_model.h5
+#### Kaggle NoteBook :- https://www.kaggle.com/code/ajr094/image-caption-generator/notebook
