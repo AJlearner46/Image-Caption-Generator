@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 import numpy as np
 import pickle
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
@@ -7,7 +8,9 @@ from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # Load the saved model
-model = load_model('best_model.h5')
+#model = load_model('best_model.h5')
+model_path = os.path.abspath('best_model.h5')
+model = load_model(model_path)
 
 # Load the tokenizer
 with open('tokenizer.pkl', 'rb') as tokenizer_file:
