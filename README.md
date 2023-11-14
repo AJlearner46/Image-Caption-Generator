@@ -1,26 +1,46 @@
 # Image-Caption-Generator
 
-You saw an image and your brain can easily tell what the image is about, but can a computer tell what the image is representing? This is what we are going to implement in this Python based project where we will use deep learning techniques of Convolutional Neural Networks and a type of Recurrent Neural Network (LSTM) together.
+While humans can interpret these images without detailed captions, machines require some form of image captions for automatic understanding.
 
-# What is Image Caption Generator?
-Image caption generator is a task that involves computer vision and natural language processing concepts to recognize the context of an image and describe them in a natural language like English.
+This project aims to develop an end-to-end solution for generating descriptive captions for images using deep learning techniques. 
 
-# Dataset
-flickr dataset link :- https://www.kaggle.com/datasets/adityajn105/flickr8k
+## Dataset
+- flickr dataset link :- https://www.kaggle.com/datasets/adityajn105/flickr8k
+- I used the Flickr8k Dataset, which contains 8092 photographs and text descriptions. Dataset contain 5 caption for each Image
 
-Dataset consisting of 8,000 images that are each paired with five different captions which provide clear descriptions of the salient entities and events.
+## Methodology for Image Captioning
 
-# What is CNN?
-Convolutional Neural networks are specialized deep neural networks which can process the data that has input shape like a 2D matrix. Images are easily represented as a 2D matrix and CNN is very useful in working with images. It scans images from left to right and top to bottom to pull out important features from the image and combines the feature to classify images.
+### 1. Data Preprocessing
+- Extract image features
+- Text preprocessing
+- Train-Test split
+- Data generator
 
-# What is LSTM?
-LSTM stands for Long short term memory, they are a type of RNN (recurrent neural network) which is well suited for sequence prediction problems. Based on the previous text, we can predict what the next word will be. It has proven itself effective from the traditional RNN by overcoming the limitations of RNN which had short term memory. LSTM can carry out relevant information throughout the processing of inputs and with a forget gate, it discards non-relevant information.
+### 2. Encoder-Decoder Architecture
+- Load VGG16 model
+- Encoder : 
+       Image feature layer
+       Sequence feature layer
+- Decoder
+  ![image](https://github.com/AJlearner46/Image-Caption-Generator/assets/99804336/803e22b8-1536-40af-bf5a-06ca78e5c405)
 
-# Image Caption Generator Model
-to make our image caption generator model, we will be merging these architectures. It is also called a CNN-RNN model.
 
-CNN is used for extracting features from the image. We will use the pre-trained model VGG16.
-LSTM will use the information from CNN to help generate a description of the image.
+### 3. Training & Optimization
+- Training model
+- Evaluation of model
+
+### 4. Frontend
+- User interface using streamlit.
+ ![image](https://github.com/AJlearner46/Image-Caption-Generator/assets/99804336/5002201c-47b3-4946-90d4-8b9022590058)
+
+
+## Results
+- The VGG16-LSTM model was trained for 20 epochs, achieving a low training loss of 2.1828.
+- I evaluated the model using the BLEU score, with a focus on BLEU-1 score (0.536631).
+ ![image](https://github.com/AJlearner46/Image-Caption-Generator/assets/99804336/2629f4da-0290-4d1d-a0dc-d90135f1288f)
+
+
+
 
 #### Model :- https://www.kaggle.com/code/ajr094/image-caption-generator/output?select=best_model.h5
 #### Kaggle NoteBook :- https://www.kaggle.com/code/ajr094/image-caption-generator/notebook
