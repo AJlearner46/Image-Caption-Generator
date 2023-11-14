@@ -18,7 +18,7 @@ def load_model_from_drive(file_id):
     url = f"https://drive.google.com/uc?id={file_id}"
     response = requests.get(url)
     model_content = BytesIO(response.content)
-    model = load_model(model_content)
+    model = tensorflow.keras.models.load_model(model_content)
     return model
 
 # Extract file ID from the Google Drive link
