@@ -15,14 +15,15 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # Function to load model from Google Drive
 def load_model_from_drive(file_id):
-    url = f"https://drive.google.com/file/d/{file_id}/view?usp=sharing"
+    url = f"https://drive.google.com/uc?id={file_id}"
     response = requests.get(url)
     model_content = BytesIO(response.content)
     model = load_model(model_content)
     return model
-    
-# file id
-file_id = '1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9'
+
+# Extract file ID from the Google Drive link
+drive_link = "https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=sharing"
+file_id = drive_link.split("/file/d/")[-1].split("/")[0]
 
 # Load the model
 model = load_model_from_drive(file_id)
