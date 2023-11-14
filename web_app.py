@@ -11,14 +11,16 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
 # https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=drive_link
+# https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=sharing
 
 # Function to load model from Google Drive
 def load_model_from_drive(file_id):
-    url = f"https://drive.google.com/file/d/{file_id}/view?usp=drive_link"
+    url = f"https://drive.google.com/file/d/{file_id}/view?usp=sharing"
     response = requests.get(url)
     model_content = BytesIO(response.content)
     model = load_model(model_content)
     return model
+    
 # file id
 file_id = '1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9'
 
