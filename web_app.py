@@ -1,5 +1,7 @@
 import streamlit as st
 import os
+from io import BytesIO
+import requests
 import numpy as np
 import pickle
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
@@ -7,16 +9,34 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
+
+# https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=drive_link
+
+# Function to load model from Google Drive
+def load_model_from_drive(file_id):
+    url = f"https://drive.google.com/file/d/{file_id}/view?usp=drive_link"
+    response = requests.get(url)
+    model_content = BytesIO(response.content)
+    model = load_model(model_content)
+    return model
+# file id
+file_id = '1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9'
+
+# Load the model
+model = load_model_from_drive(file_id)
+
+
 # Load the saved model
-#model = load_model('best_model.h5')
-model_path = os.path.abspath('best_model.h5')
-model = load_model(model_path)
+# model_path = os.path.abspath('best_model.h5')
+# model = load_model(model_path)
+
 
 # Load the tokenizer
 with open('tokenizer.pkl', 'rb') as tokenizer_file:
     tokenizer = pickle.load(tokenizer_file)
 
 vgg_model = VGG16()
+
 # restructure the model
 vgg_model = Model(inputs=vgg_model.inputs, outputs=vgg_model.layers[-2].output)
 
