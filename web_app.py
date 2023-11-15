@@ -100,5 +100,8 @@ if uploaded_image is not None:
 
     if st.button("Generate Caption"):
         caption = generate_caption(model, feature, tokenizer )
+        gen_caption = caption.replace('startseq', '').replace('endseq', '')
+        st.write("Generated Caption : ", gen_caption)
 
-        st.write("Generated Caption:", caption)
+
+st.markdown("Built by Ayush Rupapara")
