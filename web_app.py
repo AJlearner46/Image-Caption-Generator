@@ -23,7 +23,7 @@ def load_model_from_drive(file_id):
     return model
 
 # Extract file ID from the Google Drive link
-drive_link = "https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=sharing"
+drive_link = "https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=drive_link"
 file_id = drive_link.split("/file/d/")[-1].split("/")[0]
 
 # Load the model
