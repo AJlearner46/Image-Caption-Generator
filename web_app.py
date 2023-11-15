@@ -2,6 +2,7 @@ import streamlit as st
 import os
 from io import BytesIO
 import requests
+import gdown
 import numpy as np
 import pickle
 import tensorflow
@@ -29,10 +30,28 @@ file_id = drive_link.split("/file/d/")[-1].split("/")[0]
 # Load the model
 model = load_model_from_drive(file_id)
 '''
-url = "https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=drive_link"
-response = requests.get(url)
-model_content = BytesIO(response.content)
-model = tensorflow.keras.models.load_model(model_content)
+
+# Function to extract file ID from Google Drive link
+def extract_file_id(drive_link):
+    file_id = drive_link.split("/file/d/")[1].split("/view")[0]
+    return file_id
+
+# Function to download model from Google Drive
+def download_model_from_drive(file_id, output_path):
+    url = f"https://drive.google.com/uc?id={file_id}"
+    gdown.download(url, output_path, quiet=False)
+
+
+drive_link = 'https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=drive_link'
+file_id = extract_file_id(drive_link)
+output_path = 'best_model.h5'
+
+# Download the model
+download_model_from_drive(file_id, output_path)
+
+# Load the model
+model = load_model(output_path)
+
 
 # Load the saved model
 # model_path = os.path.abspath('best_model.h5')
