@@ -2,7 +2,9 @@
 
 While humans can interpret these images without detailed captions, machines require some form of image captions for automatic understanding.
 
-This project aims to develop an end-to-end solution for generating descriptive captions for images using deep learning techniques. 
+This project aims to develop an end-to-end solution for generating descriptive captions for images using deep learning techniques.
+
+demo : https://image-captioin-generator-aj.streamlit.app/
 
 ## Dataset
 - flickr dataset link :- https://www.kaggle.com/datasets/adityajn105/flickr8k
