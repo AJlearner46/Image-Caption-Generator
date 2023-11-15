@@ -12,31 +12,11 @@ from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
-# https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=drive_link
-# https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=sharing
-'''
-# Function to load model from Google Drive
-def load_model_from_drive(file_id):
-    url = f"https://drive.google.com/uc?id={file_id}"
-    response = requests.get(url)
-    model_content = BytesIO(response.content)
-    model = tensorflow.keras.models.load_model(model_content)
-    return model
-
-# Extract file ID from the Google Drive link
-drive_link = "https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=drive_link"
-file_id = drive_link.split("/file/d/")[-1].split("/")[0]
-
-# Load the model
-model = load_model_from_drive(file_id)
-'''
-
-# Function to extract file ID from Google Drive link
 def extract_file_id(drive_link):
     file_id = drive_link.split("/file/d/")[1].split("/view")[0]
     return file_id
 
-# Function to download model from Google Drive
+# download model from Google Drive
 def download_model_from_drive(file_id, output_path):
     url = f"https://drive.google.com/uc?id={file_id}"
     gdown.download(url, output_path, quiet=False)
@@ -46,10 +26,8 @@ drive_link = 'https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/
 file_id = extract_file_id(drive_link)
 output_path = 'best_model.h5'
 
-# Download the model
 download_model_from_drive(file_id, output_path)
 
-# Load the model
 model = load_model(output_path)
 
 
@@ -58,7 +36,7 @@ model = load_model(output_path)
 # model = load_model(model_path)
 
 
-# Load the tokenizer
+# Load tokenizer
 with open('tokenizer.pkl', 'rb') as tokenizer_file:
     tokenizer = pickle.load(tokenizer_file)
 
@@ -67,7 +45,7 @@ vgg_model = VGG16()
 # restructure the model
 vgg_model = Model(inputs=vgg_model.inputs, outputs=vgg_model.layers[-2].output)
 
-# Define functions for image processing and caption generation
+# for image processing and caption generation
 def load_and_preprocess_image(image_path):
     # Load and preprocess the image for VGG
     image = load_img(image_path, target_size=(224, 224))
@@ -106,7 +84,7 @@ def generate_caption(model, image, tokenizer):
             break
         # Append the word as input for generating the next word
         in_text += " " + word
-        # Stop if we reach the end tag
+        # Stop to end tag
         if word == 'endseq':
             break
 
