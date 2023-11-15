@@ -91,6 +91,7 @@ def generate_caption(model, image, tokenizer):
     return in_text
 
 st.title("Image Caption Generator")
+st.markdown("Built by Ayush Rupapara")
 
 uploaded_image = st.file_uploader("Upload an image...", type=["jpg", "jpeg", "png"])
 
@@ -104,4 +105,3 @@ if uploaded_image is not None:
         st.write("Generated Caption : ", gen_caption)
 
 
-st.markdown("Built by Ayush Rupapara")
