@@ -13,7 +13,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=drive_link
 # https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=sharing
-
+'''
 # Function to load model from Google Drive
 def load_model_from_drive(file_id):
     url = f"https://drive.google.com/uc?id={file_id}"
@@ -28,7 +28,11 @@ file_id = drive_link.split("/file/d/")[-1].split("/")[0]
 
 # Load the model
 model = load_model_from_drive(file_id)
-
+'''
+url = "https://drive.google.com/file/d/1JMpnVSZg48LjjonZEmrFghsVAfJkKEJ9/view?usp=drive_link"
+response = requests.get(url)
+model_content = BytesIO(response.content)
+model = tensorflow.keras.models.load_model(model_content)
 
 # Load the saved model
 # model_path = os.path.abspath('best_model.h5')
